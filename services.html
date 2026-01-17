@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Ferns Tech Engineers</title>
+    <title>Premium Industrial Parts - Ferns Tech Engineers</title>
     <script src="/_sdk/element_sdk.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
     <style>
-        /* Copying styles from main page to maintain consistency */
         body {
             box-sizing: border-box;
         }
@@ -51,32 +49,20 @@
             overflow-x: hidden;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Navbar */
+        /* Reuse Navbar Styles */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.3s ease;
+            padding: 12px 0;
             background: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(20px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
@@ -90,7 +76,7 @@
 
         .logo {
             font-family: 'Poppins', sans-serif;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: white;
             text-decoration: none;
@@ -119,9 +105,7 @@
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
-            font-size: 15px;
             transition: color 0.3s ease;
-            position: relative;
         }
 
         .nav-links a:hover {
@@ -131,13 +115,12 @@
         .nav-cta {
             background: var(--gradient-primary);
             color: white;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         .nav-cta:hover {
@@ -145,219 +128,182 @@
             box-shadow: var(--shadow-glow);
         }
 
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .mobile-toggle span {
-            width: 25px;
-            height: 2px;
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-        /* Page Header */
-        .page-header {
+        /* Parts Header */
+        .parts-header {
             padding: 160px 0 80px;
             background: var(--gradient-dark);
             text-align: center;
+            color: white;
             position: relative;
             overflow: hidden;
         }
 
-        .page-header::before {
+        .parts-header::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
         }
 
-        .page-title {
-            font-size: 48px;
-            color: white;
-            margin-bottom: 16px;
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .parts-title {
+            font-size: clamp(36px, 5vw, 64px);
+            margin-bottom: 20px;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
-        .page-description {
+        .parts-title span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .parts-description {
             color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
             max-width: 600px;
             margin: 0 auto;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
-        /* Gallery Grid */
-        .gallery-section {
+        /* Parts Gallery */
+        .parts-gallery {
             padding: 80px 0;
             background: white;
         }
 
-        .gallery-grid {
+        .parts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        .gallery-item {
+        .part-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
 
-        .gallery-item:hover {
+        .part-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 107, 53, 0.2);
         }
 
-        .gallery-image {
+        .part-image {
             width: 100%;
-            aspect-ratio: 4/3;
+            height: 250px;
             background: #f0f0f0;
             position: relative;
             overflow: hidden;
         }
 
-        .gallery-image img {
+        .part-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .gallery-item:hover .gallery-image img {
+        .part-card:hover .part-image img {
             transform: scale(1.1);
         }
 
-        .gallery-info {
+        .part-content {
             padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
-        .gallery-info h3 {
+        .part-title {
             font-size: 20px;
             color: var(--secondary);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
-        .gallery-info p {
-            font-size: 14px;
+        .part-desc {
             color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
-        .btn-order {
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin-top: 16px;
-            padding: 12px;
-            background: var(--secondary);
+        .part-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25D366;
             color: white;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
-        .btn-order:hover {
-            background: var(--primary);
+        .part-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
-        /* Footer */
+        /* Footer - Simplified copy of index footer structure */
         .footer {
             background: var(--secondary);
-            padding: 80px 0 30px;
+            padding: 60px 0 30px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer h4 {
-            color: white;
-            font-size: 18px;
-            margin-bottom: 24px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .footer-bottom {
-            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-        }
-
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 72px;
-                left: 0;
-                right: 0;
-                background: var(--secondary);
-                padding: 20px;
-                flex-direction: column;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
+            padding-top: 30px;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
+            .parts-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             }
 
-            .page-title {
-                font-size: 32px;
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
-
     <!-- Navbar -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
                 <div class="logo-icon">
@@ -369,137 +315,215 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <span>Ferns Tech Engineers</span>
+                Ferns Tech Engineers
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#systems">Systems</a></li>
-                <li><a href="services.html" style="color: white; font-weight: 700;">Services</a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="index.html#process">Process</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <a href="index.html#contact" class="nav-cta">Get Quote</a>
-            <div class="mobile-toggle" id="mobile-toggle"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
     <!-- Header -->
-    <header class="page-header">
+    <header class="parts-header">
         <div class="container">
-            <h1 class="page-title">Our Services</h1>
-            <p class="page-description">Comprehensive industrial heating solutions including boiler services, maintenance, installation, and genuine spare parts.</p>
+            <h1 class="parts-title">Premium <span>Industrial Parts</span></h1>
+            <p class="parts-description">Browse our extensive inventory of genuine spare parts available for immediate
+                order.</p>
         </div>
     </header>
 
     <!-- Gallery Section -->
-    <section class="gallery-section">
+    <section class="parts-gallery">
         <div class="container">
-            <div class="gallery-grid">
-                <!-- Boiler Specific Parts -->
-                <!-- Boiler Specific Parts - Local Images -->
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-1.jpg" alt="Part 1">
+            <div class="parts-grid" id="parts-grid">
+                <!-- Part 1 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part1.jpeg" alt="Industrial Part 1">
                     </div>
-                    <div class="gallery-info">
-                        <h3>Industrial Boiler Control</h3>
-                        <p>Complete control systems for high-pressure industrial boilers.</p>
-                        <a href="fern tech engineers.html#contact" class="btn-order">Inquire Now</a>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-2.jpg" alt="Part 2">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>High Pressure Gauge</h3>
-                        <p>Precision pressure monitoring gauges for steam boilers.</p>
-                        <a href="index.html#contact" class="btn-order">Inquire Now</a>
+                    <div class="part-content">
+                        <h3 class="part-title">Pressure Valve Assembly</h3>
+                        <p class="part-desc">High-grade stainless steel pressure valve for industrial boilers.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                            Inquiry Now
+                        </a>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-3.jpg" alt="Part 3">
+
+                <!-- Copy for 9 more items -->
+                <!-- Part 2 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part2.jpeg" alt="Industrial Part 2">
                     </div>
-                    <div class="gallery-info">
-                        <h3>Safety Relief Valve</h3>
-                        <p>Certified safety relief valves for boiler pressure management.</p>
-                        <a href="index.html#contact" class="btn-order">Inquire Now</a>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-4.jpg" alt="Part 4">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Boiler Piping Kit</h3>
-                        <p>Heavy-duty piping and connection components for thermal systems.</p>
-                        <a href="fern tech engineers.html#contact" class="btn-order">Inquire Now</a>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-5.jpg" alt="Part 5">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Boiler Feed Pump</h3>
-                        <p>High-efficiency centrifugal pumps for boiler feedwater.</p>
-                        <a href="index.html#contact" class="btn-order">Inquire Now</a>
+                    <div class="part-content">
+                        <h3 class="part-title">Burner Nozzle</h3>
+                        <p class="part-desc">Precision-engineered nozzle for optimal fuel combustion.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-6.jpg" alt="Part 6">
+
+                <!-- Part 3 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part3.jpeg" alt="Industrial Part 3">
                     </div>
-                    <div class="gallery-info">
-                        <h3>Industrial Burner</h3>
-                        <p>High-performance gas and oil burner assemblies.</p>
-                        <a href="index.html#contact" class="btn-order">Inquire Now</a>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-7.jpg" alt="Part 7">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Temperature Sensor</h3>
-                        <p>High-precision industrial temperature sensors and probes.</p>
-                        <a href="index.html#contact" class="btn-order">Inquire Now</a>
+                    <div class="part-content">
+                        <h3 class="part-title">Control Panel Module</h3>
+                        <p class="part-desc">Advanced PLC module for automated system control.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-8.jpg" alt="Part 8">
+
+                <!-- Part 4 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part4.jpeg" alt="Industrial Part 4">
                     </div>
-                    <div class="gallery-info">
-                        <h3>Water Level Controller</h3>
-                        <p>Automated water level control systems for boilers.</p>
-                        <a href="index.html#contact" class="btn-order">Inquire Now</a>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-9.jpg" alt="Part 9">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>Flame Detector</h3>
-                        <p>Advanced flame detection systems for burner safety.</p>
-                        <a href="fern tech engineers.html#contact" class="btn-order">Inquire Now</a>
+                    <div class="part-content">
+                        <h3 class="part-title">Thermal Sensor</h3>
+                        <p class="part-desc">High-sensitive temperature probe for accurate readings.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="assets/images/part-10.jpg" alt="Part 10">
+
+                <!-- Part 5 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part5.jpeg" alt="Industrial Part 5">
                     </div>
-                    <div class="gallery-info">
-                        <h3>Gasket Kit</h3>
-                        <p>Complete gasket sets for boiler maintenance and repair.</p>
-                        <a href="fern tech engineers.html#contact" class="btn-order">Inquire Now</a>
+                    <div class="part-content">
+                        <h3 class="part-title">Heavy Duty Pump</h3>
+                        <p class="part-desc">Rugged industrial pump for continuous operation.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
                     </div>
                 </div>
+
+                <!-- Part 6 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part6.jpeg" alt="Industrial Part 6">
+                    </div>
+                    <div class="part-content">
+                        <h3 class="part-title">Gasket Kit</h3>
+                        <p class="part-desc">Complete set of heat-resistant gaskets for maintenance.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Part 7 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part7.jpeg" alt="Industrial Part 7">
+                    </div>
+                    <div class="part-content">
+                        <h3 class="part-title">Heat Exchanger Tube</h3>
+                        <p class="part-desc">Seamless tube bundle for efficient heat transfer.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Part 8 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part8.jpeg" alt="Industrial Part 8">
+                    </div>
+                    <div class="part-content">
+                        <h3 class="part-title">Ignition Transformer</h3>
+                        <p class="part-desc">Reliable high-voltage ignition source.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Part 9 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part9.jpeg" alt="Industrial Part 9">
+                    </div>
+                    <div class="part-content">
+                        <h3 class="part-title">Sight Glass</h3>
+                        <p class="part-desc">Durable borosilicate sight glass for level monitoring.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Part 10 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="assets/images/parts/part10.jpeg" alt="Industrial Part 10">
+                    </div>
+                    <div class="part-content">
+                        <h3 class="part-title">Blower Fan</h3>
+                        <p class="part-desc">High-capacity blower fan for forced draft systems.</p>
+                        <a href="https://wa.me/919324366590?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20industrial%20parts."
+                            class="part-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg> Inquiry Now
+                        </a>
+                    </div>
+                </div>
+
             </div>
-        </div>
         </div>
     </section>
 
@@ -507,61 +531,23 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" />
-                                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <span>Ferns Tech Engineers</span>
-                    </a>
-                    <p style="color: rgba(255,255,255,0.6); margin-top: 20px;">Leading provider of industrial heating
-                        solutions with over 25 years of excellence.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#services">Boiler Services</a></li>
-                        <li><a href="index.html#services">Maintenance</a></li>
-                        <li><a href="index.html#services">Installation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="tel:+918308881565">+91 8308881565</a></li>
-                        <li><a href="mailto:fernstechengineers@gmail.com">fernstechengineers@gmail.com</a></li>
-                    </ul>
-                </div>
+                <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 20px;">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" />
+                            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    Ferns Tech Engineers
+                </a>
+                <p>Premium industrial heating solutions and spare parts.</p>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Ferns Tech Engineers. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu toggle
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
 </body>
 
 </html>
