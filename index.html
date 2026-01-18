@@ -2081,6 +2081,13 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
   </style>
   <style>
     @view-transition {
@@ -2394,28 +2401,28 @@
       </div>
       <div class="gallery-grid">
         <div class="gallery-item fade-up">
-          <div class="gallery-placeholder"></div>
+          <img src="assets/images/components/component1.jpg" alt="Pressure Valves" class="gallery-image">
           <div class="gallery-overlay">
             <h4>Pressure Valves</h4>
             <p>Industrial-grade safety valves</p>
           </div>
         </div>
         <div class="gallery-item fade-up stagger-1">
-          <div class="gallery-placeholder"></div>
+          <img src="assets/images/components/component2.jpg" alt="Burner Assemblies" class="gallery-image">
           <div class="gallery-overlay">
             <h4>Burner Assemblies</h4>
             <p>High-efficiency burner units</p>
           </div>
         </div>
         <div class="gallery-item fade-up stagger-2">
-          <div class="gallery-placeholder"></div>
+          <img src="assets/images/components/component3.jpg" alt="Control Panels" class="gallery-image">
           <div class="gallery-overlay">
             <h4>Control Panels</h4>
             <p>Advanced automation systems</p>
           </div>
         </div>
         <div class="gallery-item fade-up stagger-3">
-          <div class="gallery-placeholder"></div>
+          <img src="assets/images/components/component4.jpg" alt="Heat Exchangers" class="gallery-image">
           <div class="gallery-overlay">
             <h4>Heat Exchangers</h4>
             <p>Premium thermal components</p>
